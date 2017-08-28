@@ -18,6 +18,7 @@ $now = strtotime('now');
 
 // далее нужно вычислить оставшееся время до начала следующих суток и записать его в переменную $lot_time_remaining
 $lot_time_remaining = $tomorrow - $now;
+// задание 5
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -71,8 +72,7 @@ $lot_time_remaining = $tomorrow - $now;
 <main class="container">
     <section class="promo">
         <h2 class="promo__title">Нужен стафф для катки?</h2>
-        <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение. Допишу тут тест, нужно для нового комита</p>
-        <ul class="promo__list">
+        <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.
             <li class="promo__item promo__item--boards">
                 <a class="promo__link" href="all-lots.html">Доски и лыжи</a>
             </li>
