@@ -17,7 +17,9 @@ $tomorrow = strtotime('tomorrow midnight');
 $now = strtotime('now');
 
 // далее нужно вычислить оставшееся время до начала следующих суток и записать его в переменную $lot_time_remaining
-// ...
+$lot_time_remaining = $tomorrow - $now;
+// задание 5
+$lot_time_remaining = date("H:i", $lot_time_remaining);
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -44,6 +46,7 @@ $now = strtotime('now');
         <nav class="user-menu">
 
         <!-- здесь должен быть PHP код для показа аватара пользователя -->
+
                  <?php if ($is_auth == true) : ?>
          <div class="user-menu__image">
            <img src="<?=$user_avatar;?>" width="40" height="40" alt="Пользователь">
@@ -52,6 +55,7 @@ $now = strtotime('now');
            <p><?=$user_name;?></p>
          </div>
          <?php else: ?>
+
     <ul class="user-menu__list">
     <li class="user-menu__item">
       <a href="#">Регистрация</a>
@@ -69,7 +73,7 @@ $now = strtotime('now');
 <main class="container">
     <section class="promo">
         <h2 class="promo__title">Нужен стафф для катки?</h2>
-        <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение. Допишу тут тест, нужно для нового комита</p>
+        <p class="promo__text">На нашем интернет-аукционе ты найдёшь самое эксклюзивное сноубордическое и горнолыжное снаряжение.</p>
         <ul class="promo__list">
             <li class="promo__item promo__item--boards">
                 <a class="promo__link" href="all-lots.html">Доски и лыжи</a>
