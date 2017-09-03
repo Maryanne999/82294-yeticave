@@ -139,7 +139,7 @@ $ads = [
             <h2>Открытые лоты</h2>
             <select class="lots__select">
                <?php foreach ($categories as $key => $value) : ?>
-                <option><?=$categories ["$key"];?></option>
+                <option><?=$value;?></option>
                <?php endforeach; ?>
             </select>
         </div>
