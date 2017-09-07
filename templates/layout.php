@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title><?=$title-page;?></title>
+    <title><?=$title;?></title>
     <link href="css/normalize.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
@@ -47,7 +47,7 @@
     </div>
 </header>
 <main class="container">
-<?=$content-page;?>
+<?=$content;?>
 	</main>
 
 <footer class="main-footer">

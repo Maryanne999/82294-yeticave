@@ -62,4 +62,25 @@ $ads = [
 		'url' => 'img/lot-6.jpg'
 	]
 ];
+
+$content = renderTemplate(
+    'templates/index.php',
+    [
+        'categories' => $categories,
+        'ads' => $ads,
+        'lot_time_remaining' => $lot_time_remaining
+    ]
+);
+$layout_content = renderTemplate(
+    'templates/layout.php',
+    [
+        'title' => 'Yeti Cave — Главная',
+		'content' => '$content',
+        'is_auth' => $is_auth,
+        'user_avatar' => $user_avatar,
+        'user_name' => $user_name,
+        'content' => $content
+    ]
+);
+print($layout_content);
 ?>

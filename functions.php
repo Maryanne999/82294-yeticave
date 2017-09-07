@@ -1,4 +1,4 @@
-<? PHP
+<?php
 function renderTemplate($file, $info) {
 	$file = 'templates/' . $file .'.php';
 	if (file_exists($file)){
@@ -9,6 +9,5 @@ function renderTemplate($file, $info) {
 	} else {
 		echo "";
 	}
-
 };
 ?>
