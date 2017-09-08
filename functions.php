@@ -7,7 +7,7 @@ function renderTemplate($file, $info) {
 		require_once $file;
 		return ob_get_clean();
 	} else {
-		echo "";
+		return ("");
 	}
 };
 ?>

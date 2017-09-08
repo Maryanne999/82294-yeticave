@@ -64,7 +64,7 @@ $ads = [
 ];
 
 $content = renderTemplate(
-    'templates/index.php',
+    'index',
     [
         'categories' => $categories,
         'ads' => $ads,
@@ -72,10 +72,10 @@ $content = renderTemplate(
     ]
 );
 $layout_content = renderTemplate(
-    'templates/layout.php',
+    'layout',
     [
         'title' => 'Yeti Cave — Главная',
-		'content' => '$content',
+		'content' => $content,
         'is_auth' => $is_auth,
         'user_avatar' => $user_avatar,
         'user_name' => $user_name,
