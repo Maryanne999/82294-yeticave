@@ -78,8 +78,7 @@ $layout_content = renderTemplate(
 		'content' => $content,
         'is_auth' => $is_auth,
         'user_avatar' => $user_avatar,
-        'user_name' => $user_name,
-        'content' => $content
+        'user_name' => $user_name
     ]
 );
 print($layout_content);
