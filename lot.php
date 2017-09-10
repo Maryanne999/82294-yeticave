@@ -26,11 +26,12 @@ function time_format($timestamp) {
  }
 };
 
-if (isset($_GET['abs'])) {
-	$abs = $_GET['abs'];
+if (isset($_GET['lot_id']))  {
+	$abs = $_GET['lot_id'];
 }
 else {
 	http_response_code (404);
+		exit('Ошибка 404. Страница не найдена');
 }
 ?>
 
@@ -98,8 +99,8 @@ else {
                 <div class="lot-item__image">
                     <img src="<?=$url; ?>" width="730" height="548" alt="Сноуборд">
                 </div>
-                <p class="lot-item__category">Категория: <span><?=htmlspecialchars($categories); ?></span></p>
-                <p class="lot-item__description"><?=htmlspecialchars($message) ; ?></p>
+                <p class="lot-item__category">Категория: <span><?=htmlspecialchars($ads['categories']); ?></span></p>
+                <p class="lot-item__description"><?=htmlspecialchars($ads['description']) ; ?></p>
             </div>
             <div class="lot-item__right">
                 <div class="lot-item__state">
@@ -109,10 +110,10 @@ else {
                     <div class="lot-item__cost-state">
                         <div class="lot-item__rate">
                             <span class="lot-item__amount">Текущая цена</span>
-                            <span class="lot-item__cost"><?=$price; ?></span>
+                            <span class="lot-item__cost"><?=$ads['price']; ?></span>
                         </div>
                         <div class="lot-item__min-cost">
-                            Мин. ставка <span><?=$price; ?></span>
+                            Мин. ставка <span><?=$ads['price']; ?></span>
                         </div>
                     </div>
                     <form class="lot-item__form" action="https://echo.htmlacademy.ru" method="post">
