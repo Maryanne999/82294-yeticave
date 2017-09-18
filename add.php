@@ -10,18 +10,52 @@ $required = ['lot-name', 'category', 'message', 'lot-rate', 'lot-step', 'lot-dat
 $num_fields = ['lot-step', 'lot-rate'];
 $errors = [];
 $err_message = [];
-$invalid_message = "Заполните это поле, пожалуйста";
+//$invalid_message = "Заполните это поле, пожалуйста";
+$rules = [
+	'category' => 'valid_category',
+	'lot-rate' => 'valid_number',
+	'lot-step' => 'valid_number',
+	'lot-date' => 'valid_date',
+	'message' => 'valid_message',
+	'avatar' => 'valid_avatar'
+];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     foreach ($_POST as $key => $value) {
       if (in_array($key, $required) && $value === '') {
         $errors[] = $key;
         $err_messages[$key] = 'Обязательное поле';
+		  break;
       }
 	  if(in_array($key, $num_fields) == true && is_numeric($value) == false) {
 		  $errors[$key] = "Значение должно быть целым положительным числом";
 	  }
+	  if (in_array($key, array_keys($rules))) {
+        $result = call_user_func($rules[$key], $value);
+
+        if (!$result) {
+          $errors[] = $key;
+
+          switch ($rules[$key]) {
+            case 'valid_category':
+              $err_message[$key] = 'Выберите категорию';
+              break;
+            case 'valid_number':
+              $err_message[$key] = 'Введите целое положительное число';
+              break;
+            case 'valid_date':
+              $err_message[$key] = 'Формат даты: дд.мм.гггг.';
+              break;
+			case 'valid_message':
+              $err_message[$key] = 'Введите описание лота';
+              break;
+			case 'valid_avatar':
+              $err_message[$key] = 'Загрузите фото. Размер не должен превышать 2мб';
+              break;
+          }
+        }
    }
+}
 }
 
 //Загрузка и сохранение фото
