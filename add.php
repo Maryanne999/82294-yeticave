@@ -65,7 +65,6 @@ if (isset($_FILES['avatar'])) {
 	$file_url = '/img/' . $file_name;
 
 	move_uploaded_file($_FILES['avatar'] ['tmp_name'], $file_path . $file_name);
-	print("<a href='$file_url'>$file_name</a>");
 }
 
 //Dfkblfwbz ajhvs
