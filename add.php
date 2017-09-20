@@ -10,7 +10,16 @@ $required = ['lot-name', 'category', 'message', 'lot-rate', 'lot-step', 'lot-dat
 $num_fields = ['lot-step', 'lot-rate'];
 $errors = [];
 $err_message = [];
-//$invalid_message = "Заполните это поле, пожалуйста";
+
+//Сохранение значений формы
+$lot-name = $_POST['lot-name'] ?? '';
+$avatar = $_POST['avatar'] ?? '';
+$message = $_POST['message'] ?? '';
+$lot-rate = $_POST['lot-rate'] ?? '';
+$lot-step = $_POST['lot-step'] ?? '';
+$lotDate = $_POST['lot-date'] ?? '';
+
+//Вывод ошибок
 $rules = [
 	'category' => 'valid_category',
 	'lot-rate' => 'valid_number',
@@ -25,13 +34,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       if (in_array($key, $required) && $value === '') {
         $errors[] = $key;
         $err_messages[$key] = 'Обязательное поле';
-		  break;
+		  continue;
       }
 	  if(in_array($key, $num_fields) == true && is_numeric($value) == false) {
-		  $errors[$key] = "Значение должно быть целым положительным числом";
+		  $errors[] = $key;
+		  $err_messages[$key] = 'Введите целое положительное число';
 	  }
 	  if (in_array($key, array_keys($rules))) {
-        $result = call_user_func($rules[$key], $value);
+        $result = $rules[$key];
 
         if (!$result) {
           $errors[] = $key;
@@ -71,7 +81,9 @@ if (isset($_FILES['avatar'])) {
 $content = renderTemplate(
     'add-lot',
     [
-        'categories' => $categories
+        'categories' => $categories,
+		'errors' => $errors,
+		'err-messages' => $err-messages
     ]
 );
 $layout_content = renderTemplate(
