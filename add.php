@@ -48,12 +48,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $content = renderTemplate(
             'lot',
             [
-                'lot_name' => $lot_name,
+                'lot_name' => $lot_name, //Уточнить у Кирилла
                 'avatar' => $avatar,
                 'message' => $message,
                 'lot_rate' => $lot_rate,
                 'lot_step' => $lot_step,
                 'lotDate' => $lotDate,
+                'file_url' => $file_url,
+                'required' => $required
+
+
             ]
         );
     } else{
@@ -62,7 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             [
                 'categories' => $categories,
                 'errors' => $errors,
-                'err-messages' => $err_messages,
+                'err_messages' => $err_messages,
+                'lot_name' => $lot_name,
+                'avatar' => $avatar,
+                'message' => $message,
+                'lot_rate' => $lot_rate,
+                'lot_step' => $lot_step,
+                'lotDate' => $lotDate,
                 'file_url' => $file_url
             ]
         );
@@ -75,6 +85,12 @@ else {
             'categories' => $categories,
             'errors' => $errors,
             'err_messages' => $err_messages,
+            'lot_name' => $lot_name,
+            'avatar' => $avatar,
+            'message' => $message,
+            'lot_rate' => $lot_rate,
+            'lot_step' => $lot_step,
+            'lotDate' => $lotDate,
             'file_url' => $file_url
 
         ]

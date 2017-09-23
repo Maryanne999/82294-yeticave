@@ -1,3 +1,26 @@
+<?php
+$bets = [
+    ['name' => 'Иван', 'price' => 11500, 'ts' => strtotime('-' . rand(1, 50) .' minute')],
+    ['name' => 'Константин', 'price' => 11000, 'ts' => strtotime('-' . rand(1, 18) .' hour')],
+    ['name' => 'Евгений', 'price' => 10500, 'ts' => strtotime('-' . rand(25, 50) .' hour')],
+    ['name' => 'Семён', 'price' => 10000, 'ts' => strtotime('last week')]
+];
+function time_format($timestamp) {
+    $now = strtotime('now');
+    $difference_time = ($now - $timestamp) / 3600;
+    if ($difference_time > 24) {
+        return date('d.m.y в H:i', $timestamp);
+    }
+    else {
+        if ($difference_time < 1) {
+            return floor($difference_time * 60) . " минут назад" ;
+        }
+        else {
+            return floor($difference_time) . ' часов назад';
+        }
+    }
+};
+?>
 <nav class="nav">
     <ul class="nav__list container">
         <li class="nav__item">
@@ -21,27 +44,27 @@
     </ul>
 </nav>
 <section class="lot-item container">
-    <h2><?=htmlspecialchars($lot['name']); ?></h2>
+    <h2><?=htmlspecialchars($lot_name);?></h2>
     <div class="lot-item__content">
         <div class="lot-item__left">
             <div class="lot-item__image">
-                <img src="<?=$lot['url']; ?>" width="730" height="548" alt="Сноуборд">
+                <img src="<?=$file_url;?>" width="730" height="548" alt="Сноуборд">
             </div>
-            <p class="lot-item__category">Категория: <span><?=htmlspecialchars($lot['categories']); ?></span></p>
-            <p class="lot-item__description"><?=htmlspecialchars($lot['description']) ; ?></p>
+            <p class="lot-item__category">Категория: <span><?=htmlspecialchars('category'); ?></span></p>
+            <p class="lot-item__description"><?=htmlspecialchars($message) ; ?></p>
         </div>
         <div class="lot-item__right">
             <div class="lot-item__state">
                 <div class="lot-item__timer timer">
-                    10:54:12
+                    <?=$lotDate;?>
                 </div>
                 <div class="lot-item__cost-state">
                     <div class="lot-item__rate">
                         <span class="lot-item__amount">Текущая цена</span>
-                        <span class="lot-item__cost"><?=$lot['price']; ?></span>
+                        <span class="lot-item__cost"><?=$lot_rate; ?></span>
                     </div>
                     <div class="lot-item__min-cost">
-                        Мин. ставка <span><?=$lot['price']; ?></span>
+                        Мин. ставка <span><?=$lot_step; ?></span>
                     </div>
                 </div>
                 <form class="lot-item__form" action="https://echo.htmlacademy.ru" method="post">

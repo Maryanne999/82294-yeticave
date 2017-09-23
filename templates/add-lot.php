@@ -28,7 +28,7 @@
     </div>
     <div class="form__item form__item--wide <?=in_array('message', $errors) ? 'form__item--invalid' : '' ?>">
       <label for="message">Описание</label>
-      <textarea id="message" name="message" placeholder="Напишите описание лота" value="<?=$message;?>" required></textarea>
+      <textarea id="message" name="message" placeholder="Напишите описание лота" required><?=$message;?></textarea>
       <span class="form__error"><?=isset($err_messages['message']) ? 'Добавьте описание'  : ''; ?></span>
     </div>
     <div class="form__item form__item--file <?=in_array('avatar', $errors) ? 'form__item--uploaded' : '' ?>"> <!-- form__item--uploaded -->
@@ -52,7 +52,7 @@
         <input id="lot-rate" type="number" name="lot-rate" placeholder="0" value="<?=$lot_rate;?>" required>
         <span class="form__error"><?=isset($err_messages['lot-rate']) ? 'Укажите начальную цену'  : ''; ?></span>
       </div>
-      <div class="form__item form__item--small <?=in_array('avatar', $errors) ? 'form__item--invalid' : '' ?>">
+      <div class="form__item form__item--small <?=in_array('lot-step', $errors) ? 'form__item--invalid' : '' ?>">
         <label for="lot-step">Шаг ставки</label>
         <input id="lot-step" type="number" name="lot-step" placeholder="0" value="<?=$lot_step;?>" required>
         <span class="form__error"><?=isset($err_messages['lot-step']) ? 'Укажите шаг ставки'  : ''; ?></span>
@@ -63,6 +63,9 @@
         <span class="form__error"><?=isset($err_messages['lot-date']) ? 'Добавьте завершения'  : ''; ?></span>
       </div>
     </div>
-    <span class="form__error form__error--bottom <?=count($errors) ? 'form--invalid' : '' ?>">Пожалуйста, исправьте ошибки в форме.</span>
+      <?php
+      if (count($errors)): ?>
+    <span class="form__error form__error--bottom">Пожалуйста, исправьте ошибки в форме.</span>
+      <?php endif; ?>
     <button type="submit" class="button">Добавить лот</button>
   </form>
