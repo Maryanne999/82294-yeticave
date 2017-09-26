@@ -1,26 +1,4 @@
-<?php
-$bets = [
-    ['name' => 'Иван', 'price' => 11500, 'ts' => strtotime('-' . rand(1, 50) .' minute')],
-    ['name' => 'Константин', 'price' => 11000, 'ts' => strtotime('-' . rand(1, 18) .' hour')],
-    ['name' => 'Евгений', 'price' => 10500, 'ts' => strtotime('-' . rand(25, 50) .' hour')],
-    ['name' => 'Семён', 'price' => 10000, 'ts' => strtotime('last week')]
-];
-function time_format($timestamp) {
-    $now = strtotime('now');
-    $difference_time = ($now - $timestamp) / 3600;
-    if ($difference_time > 24) {
-        return date('d.m.y в H:i', $timestamp);
-    }
-    else {
-        if ($difference_time < 1) {
-            return floor($difference_time * 60) . " минут назад" ;
-        }
-        else {
-            return floor($difference_time) . ' часов назад';
-        }
-    }
-};
-?>
+
 <nav class="nav">
     <ul class="nav__list container">
         <li class="nav__item">
@@ -50,7 +28,7 @@ function time_format($timestamp) {
             <div class="lot-item__image">
                 <img src="<?=$file_url;?>" width="730" height="548" alt="Сноуборд">
             </div>
-            <p class="lot-item__category">Категория: <span><?=htmlspecialchars('category'); ?></span></p>
+            <p class="lot-item__category">Категория: <span><?=htmlspecialchars($category) ; ?></span></p>
             <p class="lot-item__description"><?=htmlspecialchars($message) ; ?></p>
         </div>
         <div class="lot-item__right">

@@ -5,6 +5,13 @@ $user_name = 'Константин';
 $user_avatar = 'img/user.jpg';
 $categories = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
 
+$bets = [
+    ['name' => 'Иван', 'price' => 11500, 'ts' => strtotime('-' . rand(1, 50) .' minute')],
+    ['name' => 'Константин', 'price' => 11000, 'ts' => strtotime('-' . rand(1, 18) .' hour')],
+    ['name' => 'Евгений', 'price' => 10500, 'ts' => strtotime('-' . rand(25, 50) .' hour')],
+    ['name' => 'Семён', 'price' => 10000, 'ts' => strtotime('last week')]
+];
+
 //Валидация полей формы и проверка полей с цифрами
 $required = ['lot-name', 'category', 'message', 'lot-rate', 'lot-step', 'lot-date'];
 $num_fields = ['lot-step', 'lot-rate'];
@@ -19,6 +26,7 @@ $message = $_POST['message'] ?? '';
 $lot_rate = $_POST['lot-rate'] ?? '';
 $lot_step = $_POST['lot-step'] ?? '';
 $lotDate = $_POST['lot-date'] ?? '';
+$category = $_POST['category'] ?? '';
 
 
 
@@ -48,14 +56,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $content = renderTemplate(
             'lot',
             [
-                'lot_name' => $lot_name, //Уточнить у Кирилла
+                'lot_name' => $lot_name, 
                 'avatar' => $avatar,
                 'message' => $message,
                 'lot_rate' => $lot_rate,
                 'lot_step' => $lot_step,
                 'lotDate' => $lotDate,
                 'file_url' => $file_url,
-                'required' => $required
+                'required' => $required,
+                'category' => $category,
+                'bets' => $bets
 
 
             ]
@@ -73,7 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'lot_rate' => $lot_rate,
                 'lot_step' => $lot_step,
                 'lotDate' => $lotDate,
-                'file_url' => $file_url
+                'file_url' => $file_url,
+                'category' => $category
             ]
         );
     }
@@ -91,7 +102,8 @@ else {
             'lot_rate' => $lot_rate,
             'lot_step' => $lot_step,
             'lotDate' => $lotDate,
-            'file_url' => $file_url
+            'file_url' => $file_url,
+            'category' => $category
 
         ]
     );
