@@ -18,7 +18,9 @@
             <input type="search" name="search" placeholder="Поиск лота">
             <input class="main-header__search-btn" type="submit" name="find" value="Найти">
         </form>
-        <a class="main-header__add-lot button" href="/add.php">Добавить лот</a>
+
+        <a class="main-header__add-lot button" href="/add.php">
+           Добавить лот</a>
 
         <nav class="user-menu">
 
@@ -30,20 +32,23 @@
          </div>
          <div class="user-menu__logged">
            <p><?=htmlspecialchars($user_name);?></p>
+             <p><?=strip_tags($_SESION['user'] ['name']); ?></p>
+             <a href="logout.php">Выход</a>
          <?php else: ?>
-
+             <?php if (!isset($_SESION['user'])) : ?>
     <ul class="user-menu__list">
     <li class="user-menu__item">
       <a href="#">Регистрация</a>
     </li>
     <li class="user-menu__item">
-      <a href="#">Вход</a>
+      <a href="add-form.php">Вход</a>
     </li>
   </ul>
+             <?php endif; ?>
         <?php endif; ?>
-
+ </div>
         </nav>
-    </div>
+	</div>
 </header>
 <main class="container">
 <?=$content;?>

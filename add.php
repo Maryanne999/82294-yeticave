@@ -5,6 +5,15 @@ $user_name = 'Константин';
 $user_avatar = 'img/user.jpg';
 $categories = ["Доски и лыжи", "Крепления", "Ботинки", "Одежда", "Инструменты", "Разное"];
 
+session_start ();
+if (!isset($_SESION['user'])) {
+	//header('HTTP/1.1 403 incorrect user');
+   // echo 'Incorrect user';
+	header(http_response_code(403));
+	print('Тест');
+}
+else {
+
 $bets = [
     ['name' => 'Иван', 'price' => 11500, 'ts' => strtotime('-' . rand(1, 50) .' minute')],
     ['name' => 'Константин', 'price' => 11000, 'ts' => strtotime('-' . rand(1, 18) .' hour')],
@@ -56,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $content = renderTemplate(
             'lot',
             [
-                'lot_name' => $lot_name, 
+                'lot_name' => $lot_name,
                 'avatar' => $avatar,
                 'message' => $message,
                 'lot_rate' => $lot_rate,
@@ -120,4 +129,5 @@ $layout_content = renderTemplate(
     ]
 );
 print($layout_content);
+}
 ?>

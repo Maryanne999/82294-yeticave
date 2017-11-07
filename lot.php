@@ -104,6 +104,9 @@ else {
                 <p class="lot-item__description"><?=htmlspecialchars($lot['description']) ; ?></p>
             </div>
             <div class="lot-item__right">
+               <?php if (!isset($_SESION['user'])) : ?>
+               <p>&nbsp;</p>
+               <?php else: ?>
                 <div class="lot-item__state">
                     <div class="lot-item__timer timer">
                         10:54:12
@@ -125,6 +128,7 @@ else {
                         <button type="submit" class="button">Сделать ставку</button>
                     </form>
                 </div>
+                <?php endif; ?>
                 <div class="history">
                     <h3>История ставок (<span>4</span>)</h3>
                     <!-- заполните эту таблицу данными из массива $bets-->
