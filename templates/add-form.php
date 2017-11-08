@@ -13,3 +13,11 @@
     </div>
     <button type="submit" class="button">Войти</button>
 </form>
+
+
+
+
+<?php
+echo $_POST['email'];
+echo $_POST['password'];
+?>

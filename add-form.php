@@ -2,9 +2,6 @@
 require_once('add-form.php');
 require_once('functions.php');
 
-$user_name = 'Константин';
-$user_avatar = 'img/user.jpg';
-
 //Функция для проверки e-mail
 function validateEmail($value) {
 	return filter_var($value, FILTER_VALIDATE_EMAIL);
@@ -24,7 +21,7 @@ function searchUserByEmail($email, $users) {
 
 
 //Получает хэш пароля
-$passwordHash = password_hash('secret-password', PASSWORD_DEFAULT);
+$passwordHash = password_hash('password', PASSWORD_DEFAULT);
 
 $required = ['email', 'password'];
 $rules = ['email' => 'validateEmail'];
@@ -69,19 +66,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			}
 		}
     }
-	session_start ();
+	session_start();
 
-	if(!empty($_POST))
+	if(!empty($_POST)) {
 		$email = $_POST['email'];
 	    $password = $_POST['password'];
-
-	if (pasword_verify($password, $user['password'])) {
+		}
+	if (password_verify($password, $users['password'])) {
 		$_SESSION['user'] = $user;
-		header("Location: /index.php");
+		header("Location: index.php");
 	}
+
 }
 
-
+echo $_SESSION['user'];
 
 
 $content = renderTemplate(
