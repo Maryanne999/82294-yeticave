@@ -26,17 +26,8 @@
 
         <!-- здесь должен быть PHP код для показа аватара пользователя -->
 
-                 <?php if ($is_auth == true) : ?>
-         <div class="user-menu__image">
-           <img src="<?=htmlspecialchars($user_avatar);?>" width="40" height="40" alt="Пользователь">
-         </div>
-         <div class="user-menu__logged">
-           <p><?=htmlspecialchars($user_name);?></p>
-             <p><?=strip_tags($_SESION['user'] ['name']); ?></p>
-             <a href="logout.php">Выход</a>
-         <?php else: ?>
-             <?php if (!isset($_SESION['user'])) : ?>
-    <ul class="user-menu__list">
+                 <?php if (!isset($_SESSION['user'])) : ?>
+                  <ul class="user-menu__list">
     <li class="user-menu__item">
       <a href="#">Регистрация</a>
     </li>
@@ -44,7 +35,15 @@
       <a href="add-form.php">Вход</a>
     </li>
   </ul>
-             <?php endif; ?>
+         <?php else: ?>
+            <!--div class="user-menu__image">
+           <img src="<?=htmlspecialchars($user_avatar);?>" width="40" height="40" alt="Пользователь">
+         </div-->
+         <div class="user-menu__logged">
+           <!--p>?=htmlspecialchars($user_name);?></p-->
+             <p><?=strip_tags($_SESION['user'] ['name']); ?></p>
+             <a href="logout.php">Выход</a>
+
         <?php endif; ?>
  </div>
         </nav>

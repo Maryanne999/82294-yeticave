@@ -1,27 +1,8 @@
 <?
-require_once('add-form.php');
 require_once('functions.php');
 
-//Функция для проверки e-mail
-function validateEmail($value) {
-	return filter_var($value, FILTER_VALIDATE_EMAIL);
-}
+session_start();
 
-//Функция поиска пользователя по email
-function searchUserByEmail($email, $users) {
-	$result = null;
-	foreach ($users as $user) {
-		if ($user['email'] == $email) {
-			$result = $user;
-			break;
-		}
-	}
-	return $result;
-}
-
-
-//Получает хэш пароля
-$passwordHash = password_hash('password', PASSWORD_DEFAULT);
 
 $required = ['email', 'password'];
 $rules = ['email' => 'validateEmail'];
@@ -36,19 +17,21 @@ $users = [
     [
         'email' => 'ignat.v@gmail.com',
         'name' => 'Игнат',
-        'password' => '$2y$10$OqvsKHQwr0Wk6FMZDoHo1uHoXd4UdxJG/5UDtUiie00XaxMHrW8ka'
+        'password' => '$2y$10$OqvsKHQwr0Wk6FMZDoHo1uHoXd4UdxJG/5UDtUiie00XaxMHrW8ka',
     ],
     [
         'email' => 'kitty_93@li.ru',
         'name' => 'Леночка',
-        'password' => '$2y$10$bWtSjUhwgggtxrnJ7rxmIe63ABubHQs0AS0hgnOo41IEdMHkYoSVa'
+        'password' => '$2y$10$bWtSjUhwgggtxrnJ7rxmIe63ABubHQs0AS0hgnOo41IEdMHkYoSVa',
     ],
     [
         'email' => 'warrior07@mail.ru',
         'name' => 'Руслан',
-        'password' => '$2y$10$2OxpEH7narYpkOT1H5cApezuzh10tZEEQ2axgFOaKW.55LxIJBgWW'
+        'password' => '$2y$10$2OxpEH7narYpkOT1H5cApezuzh10tZEEQ2axgFOaKW.55LxIJBgWW',
     ]
 ];
+
+
 
 //Валидация полей формы
 
@@ -66,20 +49,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			}
 		}
     }
-	session_start();
 
 	if(!empty($_POST)) {
 		$email = $_POST['email'];
 	    $password = $_POST['password'];
-		}
+		if ($user = searchUserByEmail($email, $users)) {
 	if (password_verify($password, $users['password'])) {
 		$_SESSION['user'] = $user;
-		header("Location: index.php");
+		header("Location: /index.php");
+		 	}
+		}
 	}
-
 }
 
-echo $_SESSION['user'];
+//echo $_SESSION['user'];
 
 
 $content = renderTemplate(

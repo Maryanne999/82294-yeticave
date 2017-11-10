@@ -26,4 +26,24 @@ function time_format($timestamp) {
         }
     }
 };
+
+//Функция для проверки e-mail
+function validateEmail($value) {
+	return filter_var($value, FILTER_VALIDATE_EMAIL);
+}
+
+//Функция поиска пользователя по email
+function searchUserByEmail($email, $users) {
+	$result = null;
+	foreach ($users as $user) {
+		if ($user['email'] == $email) {
+			$result = $user;
+			break;
+		}
+	}
+	return $result;
+}
+
+//Получает хэш пароля
+$passwordHash = password_hash($password, PASSWORD_DEFAULT);
 ?>
