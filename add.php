@@ -11,7 +11,6 @@ if (!isset($_SESSION['user'])) {
 	//header('HTTP/1.1 403 incorrect user');
    // echo 'Incorrect user';
 	header(http_response_code(403));
-	print('Тест');
 }
 else {
 
@@ -124,9 +123,13 @@ $layout_content = renderTemplate(
     [
         'title' => 'Yeti Cave — Добавление лота',
 		'content' => $content,
-        'is_auth' => $is_auth,
-        'user_avatar' => $user_avatar,
-        'user_name' => $user_name
+        'content' => $content,
+        'email' => $email,
+        'password' => $password,
+        'users' => $users
+        //'is_auth' => $is_auth,
+        //'user_avatar' => $user_avatar,
+        //'user_name' => $user_name
     ]
 );
 print($layout_content);

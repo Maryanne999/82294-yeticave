@@ -1,8 +1,6 @@
 <?php
 
-
-$user_name = 'Константин';
-$user_avatar = 'img/user.jpg';
+session_start();
 
 require_once('functions.php');
 require_once('lots_array.php');
@@ -39,9 +37,9 @@ $layout_content = renderTemplate(
     [
         'title' => 'Yeti Cave — Главная',
 		'content' => $content,
-        'is_auth' => $is_auth,
-        'user_avatar' => $user_avatar,
-        'user_name' => $user_name
+        'email' => $email,
+        'password' => $password,
+        'users' => $users
     ]
 );
 print($layout_content);

@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$email = $_POST['email'];
 	    $password = $_POST['password'];
 		if ($user = searchUserByEmail($email, $users)) {
-	if (password_verify($password, $users['password'])) {
+	if (password_verify($password, $user['password'])) {
 		$_SESSION['user'] = $user;
 		header("Location: /index.php");
 		 	}
@@ -83,9 +83,12 @@ $layout_content = renderTemplate(
     array(
         'title' => 'Yeti Cave — Форма входа',
 		'content' => $content,
-        'is_auth' => $is_auth,
-        'user_avatar' => $user_avatar,
-        'user_name' => $user_name
+        'email' => $email,
+        'password' => $password,
+        'users' => $users
+        //'is_auth' => $is_auth,
+        //'user_avatar' => $user_avatar,
+        //'user_name' => $user_name
     )
 );
 print($layout_content);

@@ -1,7 +1,6 @@
 <?php
-
 require_once('lots_array.php');
-
+session_start();
 // ставки пользователей, которыми надо заполнить таблицу
 $bets = [
     ['name' => 'Иван', 'price' => 11500, 'ts' => strtotime('-' . rand(1, 50) .' minute')],
@@ -49,24 +48,31 @@ else {
 <header class="main-header">
     <div class="main-header__container container">
         <h1 class="visually-hidden">YetiCave</h1>
-        <a class="main-header__logo" href="index.html">
+        <a class="main-header__logo" href="http://yeticave/">
             <img src="img/logo.svg" width="160" height="39" alt="Логотип компании YetiCave">
         </a>
         <form class="main-header__search" method="get" action="https://echo.htmlacademy.ru">
             <input type="search" name="search" placeholder="Поиск лота">
             <input class="main-header__search-btn" type="submit" name="find" value="Найти">
         </form>
-        <a class="main-header__add-lot button" href="">Добавить лот</a>
+        <a class="main-header__add-lot button" href="/add.php">Добавить лот</a>
+        <?php if (!isset($_SESSION['user'])) : ?>
         <nav class="user-menu">
             <ul class="user-menu__list">
                 <li class="user-menu__item">
                     <a href="">Регистрация</a>
                 </li>
                 <li class="user-menu__item">
-                    <a href="#">Вход</a>
+                    <a href="/add-form.php">Вход</a>
                 </li>
             </ul>
         </nav>
+        <?php else: ?>
+        <div class="user-menu__logged">
+            <p><?=strip_tags($_SESSION['user'] ['name']); ?></p>
+            <a href="logout.php">Выход</a>
+        </div>
+        <?php endif; ?>
     </div>
 </header>
 
@@ -104,7 +110,7 @@ else {
                 <p class="lot-item__description"><?=htmlspecialchars($lot['description']) ; ?></p>
             </div>
             <div class="lot-item__right">
-               <?php if (!isset($_SESION['user'])) : ?>
+               <?php if (!isset($_SESSION['user'])) : ?>
                <p>&nbsp;</p>
                <?php else: ?>
                 <div class="lot-item__state">

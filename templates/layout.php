@@ -11,7 +11,7 @@
 <header class="main-header">
     <div class="main-header__container container">
         <h1 class="visually-hidden">YetiCave</h1>
-        <a class="main-header__logo">
+        <a href="http://yeticave/" class="main-header__logo">
             <img src="img/logo.svg" width="160" height="39" alt="Логотип компании YetiCave">
         </a>
         <form class="main-header__search" method="get" action="https://echo.htmlacademy.ru">
@@ -41,7 +41,7 @@
          </div-->
          <div class="user-menu__logged">
            <!--p>?=htmlspecialchars($user_name);?></p-->
-             <p><?=strip_tags($_SESION['user'] ['name']); ?></p>
+             <p><?=strip_tags($_SESSION['user'] ['name']); ?></p>
              <a href="logout.php">Выход</a>
 
         <?php endif; ?>
@@ -60,6 +60,7 @@
                 <a href="all-lots.html">Доски и лыжи</a>
             </li>
             <li class="nav__item">
+
                 <a href="all-lots.html">Крепления</a>
             </li>
             <li class="nav__item">
